@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameDevRunner.Camera
+namespace GameDevRunner
 {
-    public class CameraFollow : MonoBehaviour
+    public class CameraManager : MonoBehaviour
     {
+        public static CameraManager instance;
+
         [SerializeField] private Transform followTarget;
         [SerializeField] private Transform lookAtTarget;
         [SerializeField] private float moveSpeed = 10f;
@@ -17,6 +19,13 @@ namespace GameDevRunner.Camera
         [SerializeField] private float leMoveSpeed;
         private bool levelEnd;
 
+        private void Awake()
+        {
+            if (instance == null)
+                instance = this;
+            else
+                Destroy(gameObject);
+        }
         private void FixedUpdate()
         {
             MoveCamera();
@@ -51,6 +60,11 @@ namespace GameDevRunner.Camera
         private void LevelEndStarted()
         {
             levelEnd = true;
+        }
+
+        public void ChangeOffset(Vector3 _addVector3)
+        {
+            offset += _addVector3;
         }
     }
 }

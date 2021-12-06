@@ -8,6 +8,13 @@ namespace GameDevRunner
     {
         [SerializeField] private CollectableTypes collectableType;
 
-        public CollectableTypes CollectableType { get => collectableType; }
+        public CollectableTypes CollectableType
+        {
+            get
+            {
+                Destroy(gameObject);
+                return collectableType;
+            }
+        }
     }
 }

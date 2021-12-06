@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2831811881339709357}
   - component: {fileID: 2831811881339709356}
   - component: {fileID: 2831811881339709355}
+  - component: {fileID: 1102715062073359313}
   m_Layer: 0
   m_Name: Tecnology
   m_TagString: Collectable
@@ -93,3 +94,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1102715062073359313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831811881339709354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242fab1012b70424783ff2de2174595c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectableType: 1

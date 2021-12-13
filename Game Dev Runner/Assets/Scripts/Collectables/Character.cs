@@ -4,15 +4,11 @@ using UnityEngine;
 using TMPro;
 
 namespace GameDevRunner
-{    
+{
     public class Character : MonoBehaviour
     {
 
         [SerializeField] private Jobs job;
-        [Header("Color")]
-        [SerializeField] private Color designerColor;
-        [SerializeField] private Color developerColor;
-        [SerializeField] private Color artistColor;
         [Header("UI")]
         [SerializeField] private TextMeshProUGUI nameText;
 
@@ -21,24 +17,32 @@ namespace GameDevRunner
         #endregion
 
         #region MonoBehaviour Methods
-        private void Start()
+        private void OnEnable()
         {
-            SetTheCharacter();
+            StaticEvents.generalInfoPost += SetTheCharacter;
+        }
+
+        private void OnDisable()
+        {
+            StaticEvents.generalInfoPost -= SetTheCharacter;
         }
         #endregion
 
-        private void SetTheCharacter()
+        private void SetTheCharacter(GeneralInfoesSO _info)
         {
             switch (job)
             {
                 case Jobs.Designer:
-                    GetComponent<MeshRenderer>().material.color = designerColor;
+                    GetComponent<MeshRenderer>().material.color = _info.DesignerColor;
+                    nameText.color = _info.DesignerColor;
                     break;
                 case Jobs.Developer:
-                    GetComponent<MeshRenderer>().material.color = developerColor;
+                    GetComponent<MeshRenderer>().material.color = _info.TechnologyColor;
+                    nameText.color = _info.TechnologyColor;
                     break;
                 case Jobs.Artist:
-                    GetComponent<MeshRenderer>().material.color = artistColor;
+                    GetComponent<MeshRenderer>().material.color = _info.ArtistColor;
+                    nameText.color = _info.ArtistColor;
                     break;
             }
 

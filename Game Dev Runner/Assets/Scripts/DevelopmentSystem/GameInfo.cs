@@ -30,33 +30,40 @@ namespace GameDevRunner
         [Header("Workers")]
         private int designerCount = 0;
         private int developerCount = 0;
-        private int artistCount = 0;        
+        private int artistCount = 0;
 
         #region Properties
         public int DesignerCount { get => designerCount; set => designerCount = value; }
         public int DeveloperCount { get => developerCount; set => developerCount = value; }
         public int ArtistCount { get => artistCount; set => artistCount = value; }
         #endregion
-        
-        public void AddPoint(CollectableTypes _type)
+
+        public int AddPoint(CollectableTypes _type)
         {
+            int result = 0;
+
             switch (_type)
             {
                 case CollectableTypes.designPoint:
                     int dp = (designBaseIncrement * designMultiplier);
-                    currentDesignPoint += (dp + (dp * designerCount));
+                    result = (dp + (dp * designerCount));
+                    currentDesignPoint += result;
                     break;
 
                 case CollectableTypes.technologyPoint:
                     int tp = (technologyBaseIncrement * technologyMultiplier);
-                    currentTechnologyPoint += (tp + (tp * developerCount));
+                    result = (tp + (tp * developerCount));
+                    currentTechnologyPoint += result;
                     break;
 
                 case CollectableTypes.artPoint:
                     int ap = (artBaseIncrement * artMultiplier);
-                    currentArtPoint += (ap + (ap * artistCount));
+                    result = (ap + (ap * artistCount));
+                    currentArtPoint += result;
                     break;
             }
+
+            return result;
         }
     }
 }

@@ -1,18 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace GameDevRunner
 {
     public class Player : MonoBehaviour
     {
         [SerializeField] private StudioInfo studioInfo;
-        [SerializeField] private GameInfo gameInfo;        
+        [SerializeField] private GameInfo gameInfo;
+        [Header("Pop-Up Text")]
+        [SerializeField] private TextMeshPro popUpPrefab;
+        [SerializeField] private Transform popUpTextHolder;
+
+        private GeneralInfoesSO generalInfoes;
+
+        #region MonoBehaviour Methods
+        private void OnEnable()
+        {
+            StaticEvents.generalInfoPost += GetGeneralInfo;
+        }
+
+        private void OnDisable()
+        {
+            StaticEvents.generalInfoPost -= GetGeneralInfo;
+        }
 
         private void Start()
         {
             DevelopNewGame();
         }
+        #endregion
 
         private void DevelopNewGame()
         {
@@ -37,7 +55,39 @@ namespace GameDevRunner
 
         public void IncreaseGamePoint(CollectableTypes _type)
         {
-            gameInfo.AddPoint(_type);
+            int result = gameInfo.AddPoint(_type);
+            TextMeshPro popUp = Instantiate(popUpPrefab, popUpTextHolder);
+            popUp.color = GetCollectableColor(_type);
+            popUp.transform.localPosition += (Vector3.right * Random.Range(-1f, 1f));
+            popUp.text = "+" + result.ToString();
+
+            generalInfoes.UIManager.IncreaseSlider(result, _type);
+        }
+
+        private void GetGeneralInfo(GeneralInfoesSO _info)
+        {
+            generalInfoes = _info;
+        }
+
+        private Color GetCollectableColor(CollectableTypes _type)
+        {
+            if (generalInfoes == null) return Color.white;
+
+            Color c = Color.white;
+            switch (_type)
+            {
+                case CollectableTypes.designPoint:
+                    c = generalInfoes.DesignerColor;
+                    break;
+                case CollectableTypes.technologyPoint:
+                    c = generalInfoes.TechnologyColor;
+                    break;
+                case CollectableTypes.artPoint:
+                    c = generalInfoes.ArtistColor;
+                    break;
+            }
+
+            return c;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace GameDevRunner
         }
         #endregion
 
-        public void SetValue(float _value, int _maxValue)
+        public void SetValue(float _value, float _maxValue)
         {
             fillImage.fillAmount = (1 / _maxValue) * _value;
             fillText.text = _value + " / " + _maxValue;

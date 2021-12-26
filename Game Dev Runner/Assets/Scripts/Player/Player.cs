@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 namespace GameDevRunner
@@ -14,6 +12,8 @@ namespace GameDevRunner
         [SerializeField] private Transform popUpTextHolder;
 
         private GeneralInfoesSO generalInfoes;
+
+        public GameInfo GameInfo { get => gameInfo; }
 
         #region MonoBehaviour Methods
         private void OnEnable()
@@ -60,8 +60,6 @@ namespace GameDevRunner
             popUp.color = GetCollectableColor(_type);
             popUp.transform.localPosition += (Vector3.right * Random.Range(-1f, 1f));
             popUp.text = "+" + result.ToString();
-
-            generalInfoes.UIManager.IncreaseSlider(result, _type);
         }
 
         private void GetGeneralInfo(GeneralInfoesSO _info)

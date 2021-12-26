@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Animations;
 
 namespace GameDevRunner
 {
@@ -20,6 +21,7 @@ namespace GameDevRunner
         private void OnEnable()
         {
             StaticEvents.generalInfoPost += SetTheCharacter;
+            ActivateRotationConstraint();
         }
 
         private void OnDisable()
@@ -47,6 +49,18 @@ namespace GameDevRunner
             }
 
             nameText.text = job.ToString();
+        }
+
+        private void ActivateRotationConstraint()
+        {
+            RotationConstraint contstraint = GetComponentInChildren<RotationConstraint>();
+
+            ConstraintSource source = new ConstraintSource();
+            source.sourceTransform = Camera.main.transform;
+            source.weight = 1f;
+
+            contstraint.AddSource(source);
+            contstraint.constraintActive = true;
         }
     }
 }

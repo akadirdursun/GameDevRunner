@@ -7,7 +7,7 @@ namespace GameDevRunner
     public class Worktable : MonoBehaviour
     {
         [SerializeField] private List<Transform> characters = new List<Transform>();
-        private List<Vector3> positionList = new List<Vector3>();
+        private List<WorkPositionInfo> positionList = new List<WorkPositionInfo>();
 
         private PositionManager positionManager;
         private BoxCollider tableCollider;
@@ -53,17 +53,17 @@ namespace GameDevRunner
             for (float i = 1.5f; i < x; i++)
             {
                 Vector3 newPos = origin + (Vector3.right * i);
-                positionList.Add(newPos);
+                positionList.Add(new WorkPositionInfo(newPos, 0));
                 newPos += (Vector3.forward * (z + 1));
-                positionList.Add(newPos);
+                positionList.Add(new WorkPositionInfo(newPos, 180));
             }
 
             for (float i = 1.5f; i < z; i++)
             {
                 Vector3 newPos = origin + (Vector3.forward * i);
-                positionList.Add(newPos);
+                positionList.Add(new WorkPositionInfo(newPos, 90));
                 newPos += (Vector3.right * (x + 1));
-                positionList.Add(newPos);
+                positionList.Add(new WorkPositionInfo(newPos, 270));
             }
 
             positionManager.UpdatePositions(positionList);

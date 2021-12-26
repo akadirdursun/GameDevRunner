@@ -8,7 +8,7 @@ namespace GameDevRunner
     {
         private List<Transform> positionList = new List<Transform>();
 
-        public void UpdatePositions(List<Vector3> _positions)
+        public void UpdatePositions(List<WorkPositionInfo> _positions)
         {
             if (_positions.Count <= positionList.Count) return;
 
@@ -23,8 +23,9 @@ namespace GameDevRunner
 
             for (int i = 0; i < positionList.Count; i++)
             {
-                positionList[i].position = _positions[i];
-                ArrangeRotation(positionList[i]);
+                positionList[i].position = _positions[i].Position;
+                positionList[i].rotation = Quaternion.Euler(0f, _positions[i].RotationY, 0f);
+                //ArrangeRotation(positionList[i]);
             }
         }
 
@@ -45,11 +46,11 @@ namespace GameDevRunner
             }
         }
 
-        private void ArrangeRotation(Transform _transform)
-        {
-            Vector3 direction = transform.localPosition - _transform.localPosition;
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            _transform.localRotation = Quaternion.Euler(0f, targetAngle, 0f);
-        }
+        //private void ArrangeRotation(Transform _transform)
+        //{
+        //    Vector3 direction = transform.localPosition - _transform.localPosition;
+        //    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        //    _transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+        //}
     }
 }

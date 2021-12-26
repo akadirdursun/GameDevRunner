@@ -9,16 +9,17 @@ namespace GameDevRunner
     {
         [Header("Managers")]
         private GameManager gameManager;
-        private UIManager uiManager;
         [Header("Color")]
         [SerializeField] private Color designerColor = new Color32(217, 98, 0, 255);
         [SerializeField] private Color technologyColor = new Color32(0, 47, 229, 255);
         [SerializeField] private Color artistColor = new Color32(200, 3, 86, 255);
-
+        //[Header("Game Sizes")]
+        //[SerializeField] private List<GameSize> gameSizes = new List<GameSize>();
+        #region Properties
         public GameManager GManager { get => gameManager; set => gameManager = value; }
-        public UIManager UIManager { get => uiManager; set => uiManager = value; }
         public Color DesignerColor { get => designerColor; }
         public Color TechnologyColor { get => technologyColor; }
         public Color ArtistColor { get => artistColor; }
+        #endregion
     }
 }

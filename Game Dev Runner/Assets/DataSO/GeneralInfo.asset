@@ -12,7 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbd0d0766b13eb498e560ca8c755b8c, type: 3}
   m_Name: GeneralInfo
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 0}
   designerColor: {r: 0.8509804, g: 0.38431373, b: 0, a: 1}
-  developerColor: {r: 0, g: 0.18431373, b: 0.8980392, a: 1}
+  technologyColor: {r: 0, g: 0.18431373, b: 0.8980392, a: 1}
   artistColor: {r: 0.78431374, g: 0.011764706, b: 0.3372549, a: 1}
+  gameSizes:
+  - name: B
+    minValue: 0
+  - name: B+
+    minValue: 200
+  - name: A
+    minValue: 400
+  - name: AA
+    minValue: 750
+  - name: AAA
+    minValue: 1500

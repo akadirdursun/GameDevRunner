@@ -8,7 +8,7 @@ namespace GameDevRunner
     [CreateAssetMenu(fileName = "StudioInfo", menuName = "StudioData")]
     public class StudioInfo : ScriptableObject
     {
-        [SerializeField] private string name;
+        [SerializeField] private string studioName;
         [Header("Games")]
         [SerializeField] private GameInfo currentGame;
         [Space]
@@ -32,7 +32,7 @@ namespace GameDevRunner
 
         public void Initiate(string _name = "")
         {
-            name = _name;
+            studioName = _name;
         }
     }
 }

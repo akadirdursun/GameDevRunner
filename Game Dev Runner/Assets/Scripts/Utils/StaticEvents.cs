@@ -1,7 +1,11 @@
 ﻿using System;
 
-namespace GameDevRunner {
+namespace GameDevRunner
+{
     public static class StaticEvents
     {
-        public static Action<GeneralInfoesSO> generalInfoPost;
-    } }
+        public static Action pathFinished;
+
+        public static Action<GeneralInfoesSO> generalInfoPost;        
+    }
+}

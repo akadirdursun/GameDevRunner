@@ -9,7 +9,6 @@ namespace GameDevRunner
     {
         [SerializeField] private string gameName;
         private GameGenres genre = null;
-        private GameSize size = null;
 
         [Header("Design")]
         [SerializeField] private int currentDesignPoint;
@@ -38,17 +37,6 @@ namespace GameDevRunner
         public int DesignerCount { get => designerCount; set => designerCount = value; }
         public int DeveloperCount { get => developerCount; set => developerCount = value; }
         public int ArtistCount { get => artistCount; set => artistCount = value; }
-        public GameSize Size
-        {
-            get => size;
-            set
-            {
-                if (size != null) return;
-
-                size = value;
-                UIManager.instance?.SetFillText(size.PointToComplete);
-            }
-        }
 
         public int DesignMultiplier { get => designMultiplier; }
         public int TechnologyMultiplier { get => technologyMultiplier; }
@@ -123,7 +111,6 @@ namespace GameDevRunner
         private void SetUI()
         {
             int totalPoint = currentDesignPoint + currentTechnologyPoint + currentArtPoint;
-            UIManager.instance?.SetValue(totalPoint, size.PointToComplete);
         }
     }
 }

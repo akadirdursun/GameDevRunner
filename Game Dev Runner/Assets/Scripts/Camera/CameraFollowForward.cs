@@ -10,6 +10,7 @@ public class CameraFollowForward : MonoBehaviour
     private void LateUpdate()
     {
         Movement();
+        Rotation();
     }
     #endregion
 
@@ -17,5 +18,11 @@ public class CameraFollowForward : MonoBehaviour
     {
         if (target == null) return;
         transform.position = target.position;
+    }
+
+    private void Rotation()
+    {
+        if (target == null) return;
+        transform.rotation = target.rotation;
     }
 }

@@ -1,70 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
 
 namespace GameDevRunner
 {
     public class CameraManager : MonoBehaviour
     {
-        public static CameraManager instance;
+        [SerializeField] private CameraFollowSwipe cameraSwipeScript;
+        [SerializeField] private Vector3 positionOffset;
+        [SerializeField] private Vector3 rotationOffset;
 
-        [SerializeField] private Transform followTarget;
-        [SerializeField] private Transform lookAtTarget;
-        [SerializeField] private float moveSpeed = 10f;
-        [SerializeField] private Vector3 offset;
-        [SerializeField] private bool lookAt;
-
-        [Header("Level End")]
-        [SerializeField] private Vector3 endLevelOffset;
-        [SerializeField] private float leMoveSpeed;
-        private bool levelEnd;
-
-        private void Awake()
+        #region EVENT LISTENERS
+        private void OnCameraOffsetChange(Vector3 addValue)
         {
-            if (instance == null)
-                instance = this;
-            else
-                Destroy(gameObject);
+            cameraSwipeScript.transform.DOLocalMoveZ(cameraSwipeScript.transform.localPosition.z - 1, 0.5f);
         }
-        private void FixedUpdate()
+        #endregion
+
+        #region MonoBehaviour METHODS
+        private void OnEnable()
         {
-            MoveCamera();
+            StaticEvents.addCameraOffset += OnCameraOffsetChange;
         }
 
-        private void MoveCamera()
+        private void OnDisable()
         {
-            if (levelEnd)
-            {
-                LevelEnd();
-                return;
-            }
-
-            Vector3 step = followTarget.TransformPoint(offset);
-            transform.position = Vector3.Lerp(transform.position, step, moveSpeed * Time.fixedDeltaTime);
-
-            if (lookAt && lookAtTarget != null)
-                transform.LookAt(lookAtTarget);
+            StaticEvents.addCameraOffset -= OnCameraOffsetChange;
         }
 
-        float turnSmoothVelocity;
-        private void LevelEnd()
+        private void OnValidate()
         {
-            Vector3 step = followTarget.position + endLevelOffset;
-            transform.position = Vector3.Lerp(transform.position, step, leMoveSpeed * Time.fixedDeltaTime);
+            if (cameraSwipeScript == null) return;
 
-            float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, 0, ref turnSmoothVelocity, 1f);
-            var eulerAngle = Quaternion.Euler(smoothAngle, 0f, 0f);
-            transform.rotation = eulerAngle;
+            cameraSwipeScript.transform.localPosition = positionOffset;
+            cameraSwipeScript.transform.localEulerAngles = rotationOffset;
         }
-
-        private void LevelEndStarted()
-        {
-            levelEnd = true;
-        }
-
-        public void ChangeOffset(Vector3 _addVector3)
-        {
-            offset += _addVector3;
-        }
+        #endregion
     }
 }

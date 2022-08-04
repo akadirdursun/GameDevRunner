@@ -34,8 +34,8 @@ namespace GameDevRunner
         }
 
         private void IncreaseTableSize()
-        {
-            CameraManager.instance.ChangeOffset(-Vector3.forward);
+        {            
+            StaticEvents.addCameraOffset?.Invoke(-Vector3.forward);
             Vector3 scale = transform.localScale;
             scale.x++;
             scale.z++;

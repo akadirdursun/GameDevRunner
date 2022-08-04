@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace GameDevRunner
 {
@@ -6,6 +7,8 @@ namespace GameDevRunner
     {
         public static Action pathFinished;
 
-        public static Action<GeneralInfoesSO> generalInfoPost;        
+        public static Action<GeneralInfoesSO> generalInfoPost;
+
+        public static Action<Vector3> addCameraOffset;
     }
 }

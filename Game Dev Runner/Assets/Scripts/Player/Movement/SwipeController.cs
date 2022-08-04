@@ -4,55 +4,40 @@ using UnityEngine;
 
 namespace GameDevRunner.Movement
 {
-    public class SwipeController : MonoBehaviour
+    public class SwipeController : BaseMovement
     {
-        #region Mine
-        [SerializeField] private float dragSpeed;
-        [SerializeField] private float dragLimit = 4f;
+        [SerializeField] private float moveSpeed = 5f;
+        [SerializeField] private float moveLimit = 4f;
 
-        private Vector3 firstPos;
-        private Vector3 lastPos;
-        private Vector3 currentSwipe;
+        private float firstPos;
+        private float lastPos;
+        private float targetPos;
 
-        private void FixedUpdate()
+        protected override void Move()
         {
-            Swipe();
-            Rotation();
+            Vector3 position = transform.localPosition;
+            position.x = Mathf.Lerp(position.x, targetPos * moveLimit, moveSpeed * Time.deltaTime);
+            transform.localPosition = position;
         }
 
-        private void Swipe()
+        protected override void GetInput()
         {
-            if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButton(0))
-            {
-                currentSwipe.x = 0;
-            }
-
             if (Input.GetMouseButtonDown(0))
             {
-                firstPos = Input.mousePosition;
+                firstPos = Input.mousePosition.x;
+                canMove = true;
             }
-            if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0) && (firstPos != Input.mousePosition.x))
             {
-                lastPos = Input.mousePosition;
+                lastPos = Input.mousePosition.x;
 
-                currentSwipe = (lastPos - firstPos);
-                Vector3 SwipeCurrent = currentSwipe;
-                currentSwipe = currentSwipe.normalized;
-
-                transform.localPosition = new Vector3(Mathf.Clamp(transform.localPosition.x, -dragLimit, dragLimit), transform.localPosition.y, transform.localPosition.z);
-
-                if (firstPos.x != lastPos.x)
-                {
-                    transform.localPosition += transform.right * dragSpeed * SwipeCurrent.x * 0.1f * Time.fixedDeltaTime;
-                }
+                targetPos = Mathf.Clamp((lastPos - firstPos), -1, 1);
                 firstPos = lastPos;
             }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                canMove = false;
+            }
         }
-
-        private void Rotation()
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), 5 * Time.fixedDeltaTime);
-        }
-        #endregion
     }
 }

@@ -15,8 +15,10 @@ namespace GameDevRunner.Movement
 
         protected override void Move()
         {
+            if (targetPos == 0) return;
+
             Vector3 position = transform.localPosition;
-            position.x = Mathf.Lerp(position.x, targetPos * moveLimit, moveSpeed * Time.deltaTime);
+            position.x = Mathf.MoveTowards(position.x, targetPos * moveLimit, moveSpeed * Time.deltaTime);
             transform.localPosition = position;
         }
 
@@ -27,7 +29,7 @@ namespace GameDevRunner.Movement
                 firstPos = Input.mousePosition.x;
                 canMove = true;
             }
-            else if (Input.GetMouseButton(0) && (firstPos != Input.mousePosition.x))
+            else if (Input.GetMouseButton(0))
             {
                 lastPos = Input.mousePosition.x;
 

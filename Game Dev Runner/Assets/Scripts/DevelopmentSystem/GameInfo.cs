@@ -96,8 +96,6 @@ namespace GameDevRunner
         {
             GetChoosenMultiplier(_genre.PrimaryType) = 3;
             GetChoosenMultiplier(_genre.SecondaryType) = 2;
-
-            UIManager.instance?.SetNodeMultipliers(this);
         }
 
         public void SetGenre(GameGenres _genre)
@@ -111,6 +109,7 @@ namespace GameDevRunner
         private void SetUI()
         {
             int totalPoint = currentDesignPoint + currentTechnologyPoint + currentArtPoint;
+            StaticEvents.onPointCollected?.Invoke(totalPoint);
         }
     }
 }

@@ -6,48 +6,35 @@ namespace GameDevRunner
 {
     public class UIManager : MonoBehaviour
     {
+        #region Singleton
         public static UIManager instance;
 
-        [Header("Multiplier Texts")]
-        [SerializeField] private TextMeshProUGUI designMultiplierText;
-        [SerializeField] private TextMeshProUGUI technologyMultiplierText;
-        [SerializeField] private TextMeshProUGUI artMultiplierText;
-        [Space]
-        [SerializeField] private Image fillImage;
-        [SerializeField] private TextMeshProUGUI fillText;
-
-        #region MonoBehaviour Methods
-        private void Awake()
+        private void InitializeSingleton()
         {
             if (instance == null)
             {
                 instance = this;
             }
-            else { Destroy(this); }
+            else if (instance != this)
+            {
+                Destroy(this);
+            }
         }
         #endregion
 
-        public void SetValue(float _value, float _maxValue)
+        [SerializeField] private Slider slider;
+        [SerializeField] private TextMeshProUGUI textMesh;
+
+        #region MonoBehaviour Methods
+        private void Awake()
         {
-            fillImage.fillAmount = (1 / _maxValue) * _value;
-            fillText.text = _value + " / " + _maxValue;
+            InitializeSingleton();
         }
+        #endregion
 
-        public void SetNodeMultipliers(GameInfo _info)
+        public void PointCollected(int value)
         {
-            designMultiplierText.text = "x" + _info.DesignMultiplier;
-            designMultiplierText.gameObject.SetActive(true);
 
-            technologyMultiplierText.text = "x" + _info.TechnologyMultiplier;
-            technologyMultiplierText.gameObject.SetActive(true);
-
-            artMultiplierText.text = "x" + _info.ArtMultiplier;
-            artMultiplierText.gameObject.SetActive(true);
-        }
-
-        public void SetFillText(int _maxValue)
-        {
-            fillText.text = "0 / " + _maxValue;
         }
     }
 }

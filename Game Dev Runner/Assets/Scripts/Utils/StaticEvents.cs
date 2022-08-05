@@ -10,5 +10,7 @@ namespace GameDevRunner
         public static Action<GeneralInfoesSO> generalInfoPost;
 
         public static Action<Vector3> addCameraOffset;
+
+        public static Action<int> onPointCollected;
     }
 }

@@ -2,23 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseMovement : MonoBehaviour
+namespace GameDevRunner.Movement
 {
-    protected bool canMove = true;
-
-    private void Update()
+    public abstract class BaseMovement : MonoBehaviour
     {
-        GetInput();
-        if (canMove)
+        protected bool canMove = true;
+
+        #region MonoBehaviour METHODS
+        private void OnEnable()
         {
-            Move();
+            StaticEvents.onPathEnded += OnPathEnded;
+        }
+
+        private void OnDisable()
+        {
+            StaticEvents.onPathEnded -= OnPathEnded;
+        }
+
+        private void Update()
+        {
+            GetInput();
+            if (canMove)
+            {
+                Move();
+            }
+        }
+        #endregion
+
+        #region EVENT LISTENERS
+        protected virtual void OnPathEnded()
+        {
+            canMove = false;
+        }
+        #endregion
+
+        protected abstract void Move();
+
+        protected virtual void GetInput()
+        {
+
         }
     }
-
-    protected abstract void Move();
-
-    protected virtual void GetInput()
-    {
-
-    }
 }
+

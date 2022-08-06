@@ -1,19 +1,39 @@
 using PathCreation;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveForward : BaseMovement
+namespace GameDevRunner.Movement
 {
-    [SerializeField] private PathCreator pathCreator;
-    [SerializeField] private float moveSpeed = 5;
-
-    private float distanceTravelled;
-
-    protected override void Move()
+    public class MoveForward : BaseMovement
     {
-        distanceTravelled += moveSpeed * Time.deltaTime;
-        transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
-        transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
+        [SerializeField] private PathCreator pathCreator;
+        [SerializeField] private float moveSpeed = 5;
+
+        private float distanceTravelled;
+
+        #region EVENT LISTENERS
+        private void OnPathEnded()
+        {
+            StaticEvents.onPathEnded?.Invoke();
+        }
+        #endregion
+
+        #region MonoBehaviour METHODS
+        private void OnEnable()
+        {
+            pathCreator.path.pathEnded += OnPathEnded;
+        }
+
+        private void OnDisable()
+        {
+            pathCreator.path.pathEnded -= OnPathEnded;
+        }
+        #endregion
+
+        protected override void Move()
+        {
+            distanceTravelled += moveSpeed * Time.deltaTime;
+            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
+            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
+        }
     }
 }

@@ -27,7 +27,6 @@ namespace GameDevRunner.Movement
             if (Input.GetMouseButtonDown(0))
             {
                 firstPos = Input.mousePosition.x;
-                canMove = true;
             }
             else if (Input.GetMouseButton(0))
             {
@@ -35,10 +34,6 @@ namespace GameDevRunner.Movement
 
                 targetPos = Mathf.Clamp((lastPos - firstPos), -1, 1);
                 firstPos = lastPos;
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                canMove = false;
             }
         }
     }

@@ -7,7 +7,7 @@ namespace PathCreation {
         /// This class stores data for the path editor, and provides accessors to get the current vertex and bezier path.
         /// Attach to a GameObject to create a new path editor.
 
-        public event System.Action pathUpdated;        
+        public event System.Action pathUpdated;                
 
         [SerializeField, HideInInspector]
         PathCreatorData editorData;

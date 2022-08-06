@@ -11,7 +11,7 @@ namespace GameDevRunner.Movement
         private float distanceTravelled;
 
         #region EVENT LISTENERS
-        private void OnPathEnded()
+        private void PathEnds()
         {
             StaticEvents.onPathEnded?.Invoke();
         }
@@ -20,12 +20,12 @@ namespace GameDevRunner.Movement
         #region MonoBehaviour METHODS
         private void OnEnable()
         {
-            pathCreator.path.pathEnded += OnPathEnded;
+            pathCreator.path.pathEnded += PathEnds;
         }
 
         private void OnDisable()
         {
-            pathCreator.path.pathEnded -= OnPathEnded;
+            pathCreator.path.pathEnded -= PathEnds;
         }
         #endregion
 

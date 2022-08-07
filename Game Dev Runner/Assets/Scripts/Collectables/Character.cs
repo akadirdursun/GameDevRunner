@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Animations;
 
-namespace GameDevRunner
+namespace GameDevRunner.Collectables
 {
     public class Character : MonoBehaviour
     {

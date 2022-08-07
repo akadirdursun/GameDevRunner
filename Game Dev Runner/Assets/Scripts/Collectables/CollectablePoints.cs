@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameDevRunner
+namespace GameDevRunner.Collectables
 {
     public class CollectablePoints : MonoBehaviour
     {

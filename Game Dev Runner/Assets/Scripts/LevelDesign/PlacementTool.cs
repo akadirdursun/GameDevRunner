@@ -28,10 +28,8 @@ namespace GameDevRunner.LevelDesign
         {
             if (LevelPathCreator != null)
             {
-                Vector3 position = levelPathCreator.path.GetPointAtTime(positionOnPath, EndOfPathInstruction.Stop);
-                transform.position = position;
-                Vector3 rotation = levelPathCreator.path.GetRotation(positionOnPath, EndOfPathInstruction.Stop).eulerAngles;
-                transform.eulerAngles = rotation;
+                //transform.position = levelPathCreator.path.GetPointAtTime(positionOnPath, EndOfPathInstruction.Stop);
+                //transform.rotation = levelPathCreator.path.GetRotation(positionOnPath, EndOfPathInstruction.Stop);
             }
 
 

@@ -106,10 +106,13 @@ namespace GameDevRunner
             SetMultipliers(_genre);
         }
 
+        public int GetTotalValue()
+        {
+            return currentDesignPoint + currentTechnologyPoint + currentArtPoint;
+        }
         private void SetUI()
         {
-            int totalPoint = currentDesignPoint + currentTechnologyPoint + currentArtPoint;
-            StaticEvents.onPointCollected?.Invoke(totalPoint);
+            StaticEvents.onPointCollected?.Invoke(GetTotalValue());
         }
     }
 }

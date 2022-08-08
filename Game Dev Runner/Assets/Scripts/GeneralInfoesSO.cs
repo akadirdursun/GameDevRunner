@@ -7,6 +7,8 @@ namespace GameDevRunner
     [CreateAssetMenu(menuName = "GeneralInfo", fileName = "NewGeneralInfo")]
     public class GeneralInfoesSO : ScriptableObject
     {
+        [SerializeField] private StudioInfo studioInfo;
+        [SerializeField] private GameSizeGeneralInfo gameSizes;
         [Header("Managers")]
         private GameManager gameManager;
         [Header("Color")]
@@ -15,6 +17,8 @@ namespace GameDevRunner
         [SerializeField] private Color artistColor = new Color32(200, 3, 86, 255);
 
         #region Properties
+        public StudioInfo StudioInfo { get => studioInfo; }
+        public GameSizeGeneralInfo GameSizes { get => gameSizes; }
         public GameManager GManager { get => gameManager; set => gameManager = value; }
         public Color DesignerColor { get => designerColor; }
         public Color TechnologyColor { get => technologyColor; }

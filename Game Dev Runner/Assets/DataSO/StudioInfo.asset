@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d3f25eff8d83645a69f41b19fe829a, type: 3}
   m_Name: StudioInfo
   m_EditorClassIdentifier: 
-  name: 
+  studioName: 
+  currentGame:
+    gameName: 
+    currentDesignPoint: 96
+    minDesignPoint: 0
+    currentTechnologyPoint: 79
+    minTechnologyPoint: 0
+    currentArtPoint: 50
+    minArtPoint: 0
   games: []

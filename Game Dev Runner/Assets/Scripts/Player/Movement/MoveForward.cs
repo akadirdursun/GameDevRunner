@@ -14,6 +14,7 @@ namespace GameDevRunner.Movement
         private void PathEnds()
         {
             StaticEvents.onPathEnded?.Invoke();
+            this.enabled = false;
         }
         #endregion
 
@@ -36,7 +37,7 @@ namespace GameDevRunner.Movement
 
         protected override void Move()
         {
-            distanceTravelled += moveSpeed * Time.deltaTime;            
+            distanceTravelled += moveSpeed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
             transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
         }

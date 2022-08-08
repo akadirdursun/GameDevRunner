@@ -8,6 +8,8 @@ namespace GameDevRunner.LevelEnd
         [SerializeField] private MeshRenderer moneyModel;
         [SerializeField] private float valuePerMoney = 1f;
 
+        private GeneralInfoesSO generalInfo;
+
         public float moneySize
         {
             get
@@ -18,8 +20,23 @@ namespace GameDevRunner.LevelEnd
 
         public float ValuePerMoney { get => valuePerMoney; }
 
-        public void LevelEndRoutine(int totalValue)
+        #region MonoBehaviour METHODS
+        private void OnEnable()
         {
+            StaticEvents.generalInfoPost += GetGeneralInfo;
+            StaticEvents.onVerticalPlatformReached += LevelEndRoutine;
+        }
+
+        private void OnDisable()
+        {
+            StaticEvents.generalInfoPost -= GetGeneralInfo;
+            StaticEvents.onVerticalPlatformReached -= LevelEndRoutine;
+        }
+        #endregion
+
+        private void LevelEndRoutine()
+        {
+            int totalValue = generalInfo.GameSizes.GetProfit(generalInfo.StudioInfo.CurrentGame.GetTotalValue());            
             int count = (int)(totalValue / valuePerMoney);
 
             for (int i = 0; i < count; i++)
@@ -35,6 +52,11 @@ namespace GameDevRunner.LevelEnd
             {
                 //TODO: LevelEnded Event
             });
+        }
+
+        private void GetGeneralInfo(GeneralInfoesSO info)
+        {
+            generalInfo = info;
         }
     }
 }

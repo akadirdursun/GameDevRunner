@@ -22,9 +22,8 @@ namespace GameDevRunner.LevelEnd
 
         public void SetPotision(int index)
         {
-            index++;
             transform.localPosition = index * MRenderer.bounds.size.y * Vector3.up;
-            textMesh.text = (10 * index).ToString() + "M";
+            textMesh.text = (10 * (index + 1)).ToString() + "M";
         }
 
         public void SetHeight(float targetHeight)

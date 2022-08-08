@@ -17,7 +17,7 @@ namespace GameDevRunner.LevelEnd
         public void Build()
         {
             Clear();
-            float moneySize = moneyScript.GetComponentInChildren<MeshRenderer>().bounds.size.y;
+            float moneySize = moneyScript.moneySize;
             float targetHeight = moneySize * (10 / moneyScript.ValuePerMoney);
             int materialIndex = 0;
             for (int i = 0; i < platformCount; i++)

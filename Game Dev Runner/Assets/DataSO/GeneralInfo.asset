@@ -12,17 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbd0d0766b13eb498e560ca8c755b8c, type: 3}
   m_Name: GeneralInfo
   m_EditorClassIdentifier: 
+  studioInfo: {fileID: 11400000, guid: 82f05829c06933645a3b0df699d75aed, type: 2}
+  gameSizes: {fileID: 11400000, guid: 754c5854b33227449a63e9966e3d0000, type: 2}
   designerColor: {r: 0.8509804, g: 0.38431373, b: 0, a: 1}
   technologyColor: {r: 0, g: 0.18431373, b: 0.8980392, a: 1}
   artistColor: {r: 0.78431374, g: 0.011764706, b: 0.3372549, a: 1}
-  gameSizes:
-  - name: B
-    minValue: 0
-  - name: B+
-    minValue: 200
-  - name: A
-    minValue: 400
-  - name: AA
-    minValue: 750
-  - name: AAA
-    minValue: 1500

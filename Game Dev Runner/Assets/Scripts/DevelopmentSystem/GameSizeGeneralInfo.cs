@@ -21,5 +21,16 @@ namespace GameDevRunner
 
             return (sizeInfoes[0], sizeInfoes[1].MinLimit);
         }
+
+        public SizeInfo GetSizeInfo(int index)
+        {
+            index = Mathf.Clamp(index, 0, sizeInfoes.Count - 1);
+            return sizeInfoes[index];
+        }
+
+        public int GetProfit(int totalPointValue)
+        {
+            return GameSizeCheck(totalPointValue).Item1.GetProfit();
+        }
     }
 }

@@ -204,7 +204,7 @@ namespace PathCreation
         /// Gets point on path based on distance travelled.
         public Vector3 GetPointAtDistance(float dst, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop)
         {
-            float t = dst / length;
+            float t = dst / length;            
             return GetPointAtTime(t, endOfPathInstruction);
         }
 
@@ -336,7 +336,8 @@ namespace PathCreation
             }
 
             float abPercent = Mathf.InverseLerp(times[prevIndex], times[nextIndex], t);
-            if (endOfPathInstruction == EndOfPathInstruction.Stop && t == 1)
+
+            if (Application.isPlaying && t >= 0.99f)
             {
                 pathEnded?.Invoke();
             }

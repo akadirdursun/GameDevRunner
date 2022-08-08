@@ -23,6 +23,11 @@ namespace GameDevRunner.Movement
             pathCreator.path.pathEnded += PathEnds;
         }
 
+        private void Start()
+        {
+            distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
+        }
+
         private void OnDisable()
         {
             pathCreator.path.pathEnded -= PathEnds;
@@ -31,7 +36,7 @@ namespace GameDevRunner.Movement
 
         protected override void Move()
         {
-            distanceTravelled += moveSpeed * Time.deltaTime;
+            distanceTravelled += moveSpeed * Time.deltaTime;            
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
             transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
         }

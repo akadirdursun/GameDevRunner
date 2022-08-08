@@ -24,15 +24,6 @@ namespace GameDevRunner.LevelDesign
         }
 
         #region MonoBehaviour METHODS
-        [ExecuteInEditMode]
-        private void OnEnable()
-        {
-            if (LevelPathCreator == null) return;
-
-            transform.position = LevelPathCreator.path.GetPointAtTime(positionOnPath, EndOfPathInstruction.Stop);
-            transform.rotation = levelPathCreator.path.GetRotation(positionOnPath, EndOfPathInstruction.Stop);
-        }
-
         private void OnValidate()
         {
             if (LevelPathCreator == null) return;

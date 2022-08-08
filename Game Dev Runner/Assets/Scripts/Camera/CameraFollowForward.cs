@@ -7,6 +7,14 @@ public class CameraFollowForward : MonoBehaviour
     [SerializeField] private Transform target;
 
     #region MonoBehaviour METHODS
+    private void OnValidate()
+    {
+        if (target == null) return;
+
+        transform.position = target.position;
+        transform.rotation = target.rotation;
+    }
+
     private void LateUpdate()
     {
         Movement();

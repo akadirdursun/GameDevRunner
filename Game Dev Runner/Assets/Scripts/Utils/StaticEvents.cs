@@ -5,6 +5,9 @@ namespace GameDevRunner
 {
     public static class StaticEvents
     {
+        public static Action levelStarted;
+        public static Action levelCompleted;
+
         public static Action onPathEnded;
         public static Action onVerticalPlatformReached;
 

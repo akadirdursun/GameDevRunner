@@ -2,30 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollowSwipe : MonoBehaviour
+namespace GameDevRunner.CameraControlls
 {
-    [SerializeField] private Transform target;
-    [Space]
-    [SerializeField] private float moveSpeed;
-
-    private float xOffset;
-    #region MonoBehaviour METHODS
-    private void Start()
+    public class CameraFollowSwipe : MonoBehaviour
     {
-        xOffset = transform.localPosition.x;
-    }
-    private void LateUpdate()
-    {
-        Movement();
-    }
-    #endregion
+        [SerializeField] private Transform target;
+        [Space]
+        [SerializeField] private float moveSpeed;
 
-    private void Movement()
-    {
-        if (target == null) return;
+        private float xOffset;
+        #region MonoBehaviour METHODS
+        private void Start()
+        {
+            xOffset = transform.localPosition.x;
+        }
+        private void LateUpdate()
+        {
+            Movement();
+        }
+        #endregion
 
-        Vector3 thisPos = transform.localPosition;
-        thisPos.x = Mathf.Lerp(transform.localPosition.x, target.localPosition.x + xOffset, moveSpeed * Time.deltaTime);
-        transform.localPosition = thisPos;
+        private void Movement()
+        {
+            if (target == null) return;
+
+            Vector3 thisPos = transform.localPosition;
+            thisPos.x = Mathf.Lerp(transform.localPosition.x, target.localPosition.x + xOffset, moveSpeed * Time.deltaTime);
+            transform.localPosition = thisPos;
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace GameDevRunner
     public static class StaticEvents
     {
         public static Action onPathEnded;
+        public static Action onVerticalPlatformReached;
 
         public static Action<GeneralInfoesSO> generalInfoPost;
 

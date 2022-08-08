@@ -5947,7 +5947,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.1736482, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0.21643962, y: 0, z: 0, w: 0.976296}
   m_LocalPosition: {x: 0, y: 8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -8454,8 +8454,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSwipeScript: {fileID: 963194229}
-  positionOffset: {x: 0, y: 8, z: -10}
-  rotationOffset: {x: 20, y: 0, z: 0}
+  offsetChangeTime: 1
+  offsetDisplayMode: 0
+  runnerOffset:
+    target: {fileID: 80330463}
+    positionOffset: {x: 0, y: 8, z: -10}
+    rotationOffset: {x: 25, y: 0, z: 0}
+  levelEndOffset:
+    target: {fileID: 1842478350}
+    positionOffset: {x: 0, y: 4, z: -7.5}
+    rotationOffset: {x: 20, y: 0, z: 0}
+  verticalPlatformOffset:
+    target: {fileID: 1842478350}
+    positionOffset: {x: 0, y: 2, z: -5}
+    rotationOffset: {x: 10, y: 0, z: 0}
 --- !u!4 &1378871466
 Transform:
   m_ObjectHideFlags: 0
@@ -11550,7 +11562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842478349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0.5, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1521744988}
@@ -12260,27 +12272,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1952599143}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1952700992 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9091868351364865476, guid: 0afd7281f26c00a42b7f4e1f75c99547,
-    type: 3}
-  m_PrefabInstance: {fileID: 9091868351427355417}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1952700993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952700992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec7d8e21cea19ba4a951aadb4ab8f272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  positionOnPath: 0.02
-  horizontalPositionHandler: {fileID: 874077874}
-  xPositionOnPath: 0
 --- !u!1001 &1985035686
 PrefabInstance:
   m_ObjectHideFlags: 0

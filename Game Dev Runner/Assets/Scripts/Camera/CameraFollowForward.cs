@@ -2,35 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollowForward : MonoBehaviour
+namespace GameDevRunner.CameraControlls
 {
-    [SerializeField] private Transform target;
-
-    #region MonoBehaviour METHODS
-    private void OnValidate()
+    public class CameraFollowForward : MonoBehaviour
     {
-        if (target == null) return;
+        [SerializeField] private Transform target;
 
-        transform.position = target.position;
-        transform.rotation = target.rotation;
-    }
+        public Transform Target { set => target = value; }
 
-    private void LateUpdate()
-    {
-        Movement();
-        Rotation();
-    }
-    #endregion
+        #region MonoBehaviour METHODS
+        private void LateUpdate()
+        {
+            Movement();
+            Rotation();
+        }
+        #endregion
 
-    private void Movement()
-    {
-        if (target == null) return;
-        transform.position = target.position;
-    }
+        private void Movement()
+        {
+            if (target == null) return;
+            transform.position = target.position;
+        }
 
-    private void Rotation()
-    {
-        if (target == null) return;
-        transform.rotation = target.rotation;
+        private void Rotation()
+        {
+            if (target == null) return;
+            transform.rotation = target.rotation;
+        }
     }
 }

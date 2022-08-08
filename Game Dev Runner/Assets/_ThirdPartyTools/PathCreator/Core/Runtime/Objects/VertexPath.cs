@@ -14,10 +14,6 @@ namespace PathCreation
 
     public class VertexPath
     {
-
-        #region EVENTS
-        public event System.Action pathEnded;
-        #endregion
         #region Fields
 
         public readonly PathSpace space;
@@ -204,7 +200,7 @@ namespace PathCreation
         /// Gets point on path based on distance travelled.
         public Vector3 GetPointAtDistance(float dst, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop)
         {
-            float t = dst / length;            
+            float t = dst / length;
             return GetPointAtTime(t, endOfPathInstruction);
         }
 
@@ -282,6 +278,12 @@ namespace PathCreation
             return Mathf.Lerp(cumulativeLengthAtEachVertex[data.previousIndex], cumulativeLengthAtEachVertex[data.nextIndex], data.percentBetweenIndices);
         }
 
+        public bool PathEnded(float dst)
+        {
+            float t = Mathf.Clamp01(dst / length);
+            return t >= 0.99f;
+        }
+
         #endregion
 
         #region Internal methods
@@ -336,11 +338,6 @@ namespace PathCreation
             }
 
             float abPercent = Mathf.InverseLerp(times[prevIndex], times[nextIndex], t);
-
-            if (Application.isPlaying && t >= 0.99f)
-            {
-                pathEnded?.Invoke();
-            }
             return new TimeOnPathData(prevIndex, nextIndex, abPercent);
         }
 

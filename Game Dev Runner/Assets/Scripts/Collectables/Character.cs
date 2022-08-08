@@ -8,6 +8,8 @@ namespace GameDevRunner.Collectables
     {
 
         [SerializeField] private Jobs job;
+        [Space]
+        [SerializeField] private SkinnedMeshRenderer smRenderer;
         [Header("UI")]
         [SerializeField] private TextMeshProUGUI nameText;
 
@@ -33,15 +35,15 @@ namespace GameDevRunner.Collectables
             switch (job)
             {
                 case Jobs.Designer:
-                    GetComponent<MeshRenderer>().material.color = _info.DesignerColor;
+                    smRenderer.material.color = _info.DesignerColor;
                     nameText.color = _info.DesignerColor;
                     break;
                 case Jobs.Developer:
-                    GetComponent<MeshRenderer>().material.color = _info.TechnologyColor;
+                    smRenderer.material.color = _info.TechnologyColor;
                     nameText.color = _info.TechnologyColor;
                     break;
                 case Jobs.Artist:
-                    GetComponent<MeshRenderer>().material.color = _info.ArtistColor;
+                    smRenderer.material.color = _info.ArtistColor;
                     nameText.color = _info.ArtistColor;
                     break;
             }

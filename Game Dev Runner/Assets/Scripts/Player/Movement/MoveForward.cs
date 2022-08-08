@@ -8,30 +8,12 @@ namespace GameDevRunner.Movement
         [SerializeField] private PathCreator pathCreator;
         [SerializeField] private float moveSpeed = 5;
 
-        private float distanceTravelled;
-
-        #region EVENT LISTENERS
-        private void PathEnds()
-        {
-            StaticEvents.onPathEnded?.Invoke();
-            this.enabled = false;
-        }
-        #endregion
+        private float distanceTravelled;        
 
         #region MonoBehaviour METHODS
-        private void OnEnable()
-        {
-            pathCreator.path.pathEnded += PathEnds;
-        }
-
         private void Start()
         {
             distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
-        }
-
-        private void OnDisable()
-        {
-            pathCreator.path.pathEnded -= PathEnds;
         }
         #endregion
 
@@ -40,6 +22,17 @@ namespace GameDevRunner.Movement
             distanceTravelled += moveSpeed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
             transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, EndOfPathInstruction.Stop);
+
+            if (pathCreator.path.PathEnded(distanceTravelled))
+            {
+                PathEnds();
+            }
+        }
+
+        private void PathEnds()
+        {
+            StaticEvents.onPathEnded?.Invoke();
+            this.enabled = false;
         }
     }
 }

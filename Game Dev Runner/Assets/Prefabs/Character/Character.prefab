@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 891474432300024944}
   - component: {fileID: 4769729805108659023}
   - component: {fileID: 5427367129366157337}
+  - component: {fileID: 6320708917828559273}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -63,6 +64,18 @@ MonoBehaviour:
   job: 0
   smRenderer: {fileID: 3649362688956743479}
   nameText: {fileID: 351373660741335808}
+--- !u!114 &6320708917828559273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891474432300024957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763d52d1f2f14654f828eba6a3f60d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4205532992480933110
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +410,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana Man
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 5c21f602d4eefcc4dbcdd55321142ed8,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9ba5ec4261c7c5041ac5522c4c021cbb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c21f602d4eefcc4dbcdd55321142ed8, type: 3}
 --- !u!4 &2562022731400807822 stripped

@@ -19,12 +19,12 @@ namespace GameDevRunner
         {
             if (other.CompareTag("Character"))
             {
+                other.GetComponent<CharacterAnimations>()?.PlaySittingAniamtion();
                 worktable.AddCharacterToTable(other.gameObject);
                 playerScript.IncreaseWorkerCount(other.GetComponent<Character>().Job);
                 return;
             }
-
-            if (other.CompareTag("Collectable"))
+            else if (other.CompareTag("Collectable"))
             {
                 playerScript.IncreaseGamePoint(other.GetComponent<CollectablePoints>().CollectableType);
                 return;

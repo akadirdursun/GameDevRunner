@@ -6,6 +6,8 @@ namespace GameDevRunner
 {
     public class PositionManager : MonoBehaviour
     {
+        [SerializeField] private Transform positionPrefab;
+
         private List<Transform> positionList = new List<Transform>();
 
         public void UpdatePositions(List<WorkPositionInfo> _positions)
@@ -16,13 +18,12 @@ namespace GameDevRunner
 
             for (int i = 0; i < d; i++)
             {
-                Transform t = new GameObject().transform;
-                t.SetParent(transform);
+                Transform t = Instantiate(positionPrefab,transform);                
                 positionList.Add(t);
             }
 
             for (int i = 0; i < positionList.Count; i++)
-            {
+            {               
                 positionList[i].position = _positions[i].Position;
                 positionList[i].rotation = Quaternion.Euler(0f, _positions[i].RotationY, 0f);
                 //ArrangeRotation(positionList[i]);

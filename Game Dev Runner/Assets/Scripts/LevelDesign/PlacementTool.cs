@@ -5,7 +5,7 @@ namespace GameDevRunner.LevelDesign
 {
     public class PlacementTool : MonoBehaviour
     {
-        [SerializeField][Range(0f, 1f)] private float positionOnPath = 0f;
+        [SerializeField][Range(0f, 1f)] private float positionOnPath = 0.01f;
         [Header("Horizontal Position")]
         [SerializeField] private Transform horizontalPositionHandler;
         [SerializeField][Range(-10f, 10f)] private float xPositionOnPath = 0f;
@@ -26,10 +26,14 @@ namespace GameDevRunner.LevelDesign
         #region MonoBehaviour METHODS
         private void OnValidate()
         {
-            if (LevelPathCreator == null) return;
+            if (LevelPathCreator != null)
+            {
+                Vector3 position = levelPathCreator.path.GetPointAtTime(positionOnPath, EndOfPathInstruction.Stop);
+                transform.position = position;
+                Vector3 rotation = levelPathCreator.path.GetRotation(positionOnPath, EndOfPathInstruction.Stop).eulerAngles;
+                transform.eulerAngles = rotation;
+            }
 
-            transform.position = LevelPathCreator.path.GetPointAtTime(positionOnPath, EndOfPathInstruction.Stop);
-            transform.rotation = levelPathCreator.path.GetRotation(positionOnPath, EndOfPathInstruction.Stop);
 
             if (horizontalPositionHandler != null)
             {

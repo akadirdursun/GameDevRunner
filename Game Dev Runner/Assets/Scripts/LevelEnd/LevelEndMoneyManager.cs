@@ -36,7 +36,7 @@ namespace GameDevRunner.LevelEnd
 
         private void LevelEndRoutine()
         {
-            int totalValue = generalInfo.GameSizes.GetProfit(generalInfo.StudioInfo.CurrentGame.GetTotalValue());            
+            int totalValue = generalInfo.GameSizes.GetProfit(generalInfo.StudioInfo.CurrentGame.GetTotalValue());
             int count = (int)(totalValue / valuePerMoney);
 
             for (int i = 0; i < count; i++)
@@ -50,7 +50,7 @@ namespace GameDevRunner.LevelEnd
 
             transform.DOLocalMoveY(count * moneySize, 1f).SetDelay(2f).OnComplete(() =>
             {
-                //TODO: LevelEnded Event
+                StaticEvents.levelCompleted?.Invoke();
             });
         }
 

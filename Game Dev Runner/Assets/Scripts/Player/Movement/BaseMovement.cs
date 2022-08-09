@@ -6,17 +6,19 @@ namespace GameDevRunner.Movement
 {
     public abstract class BaseMovement : MonoBehaviour
     {
-        protected bool canMove = true;
+        protected bool canMove;
 
         #region MonoBehaviour METHODS
         private void OnEnable()
         {
             StaticEvents.onPathEnded += OnPathEnded;
+            StaticEvents.levelStarted += OnLevelStarted;
         }
 
         private void OnDisable()
         {
             StaticEvents.onPathEnded -= OnPathEnded;
+            StaticEvents.levelStarted -= OnLevelStarted;
         }
 
         private void Update()
@@ -33,6 +35,11 @@ namespace GameDevRunner.Movement
         protected virtual void OnPathEnded()
         {
             canMove = false;
+        }
+
+        protected virtual void OnLevelStarted()
+        {
+            canMove = true;
         }
         #endregion
 

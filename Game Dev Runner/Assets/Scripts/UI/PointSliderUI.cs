@@ -15,15 +15,20 @@ namespace GameDevRunner.UI
 
         private Tween sliderTween;
         private SizeInfo currentSizeInfo;
+
         #region MonoBehaviour Methods
         private void OnEnable()
         {
             StaticEvents.onPointCollected += OnPointCollected;
+            StaticEvents.levelStarted += OnGameStart;
+            StaticEvents.onPathEnded += OnGameEnded;
         }
 
         private void OnDisable()
         {
             StaticEvents.onPointCollected -= OnPointCollected;
+            StaticEvents.levelStarted -= OnGameStart;
+            StaticEvents.onPathEnded -= OnGameEnded;
         }
         #endregion
 
@@ -52,6 +57,16 @@ namespace GameDevRunner.UI
                  slider.value = value;
              });
 
+        }
+
+        private void OnGameStart()
+        {
+            slider.gameObject.SetActive(true);
+        }
+
+        private void OnGameEnded()
+        {
+            slider.gameObject.SetActive(false);
         }
         #endregion
     }

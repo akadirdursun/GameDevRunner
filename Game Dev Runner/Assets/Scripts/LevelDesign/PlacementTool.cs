@@ -26,10 +26,10 @@ namespace GameDevRunner.LevelDesign
         #region MonoBehaviour METHODS
         private void OnValidate()
         {
-            if (LevelPathCreator != null && this.transform != null)
+            if (LevelPathCreator != null && UnityEngine.SceneManagement.SceneManager.GetActiveScene().isLoaded)
             {
-                this.transform.position = levelPathCreator.path.GetPointAtTime(positionOnPath, EndOfPathInstruction.Stop);
-                this.transform.rotation = levelPathCreator.path.GetRotation(positionOnPath, EndOfPathInstruction.Stop);
+                transform.position = levelPathCreator.path.GetPointAtTime(positionOnPath, EndOfPathInstruction.Stop);
+                transform.rotation = levelPathCreator.path.GetRotation(positionOnPath, EndOfPathInstruction.Stop);
             }
 
 
